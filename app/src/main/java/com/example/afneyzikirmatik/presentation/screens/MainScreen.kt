@@ -93,15 +93,15 @@ fun MainScreen(
         }
     }
 
-    // Zikr Selector Modal
+    // Zikir seçici modal
     if (showZikrSelector) {
-        ZikrSelector(
-            zikrs = zikrs,
+        ZikrSelectorModal(
+            zikrs = viewModel.zikrs.collectAsState().value,
             currentZikrId = counterState.currentZikrId,
             onZikrSelected = { zikrId ->
                 viewModel.switchZikr(zikrId)
-                showZikrSelector = false
-            }
+            },
+            onDismiss = { showZikrSelector = false }
         )
     }
 }
