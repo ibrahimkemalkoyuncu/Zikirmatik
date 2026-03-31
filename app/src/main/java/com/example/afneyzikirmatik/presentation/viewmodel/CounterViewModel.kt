@@ -86,6 +86,16 @@ class CounterViewModel(application: Application) : AndroidViewModel(application)
 
     init {
         loadAllData()
+        initializeFirstLaunch()
+    }
+
+    private fun initializeFirstLaunch() {
+        viewModelScope.launch {
+            if (counterRepository.isFirstLaunch()) {
+                // Set default values on first launch
+                updateGoalUseCase(100)
+            }
+        }
     }
 
     private fun loadAllData() {
