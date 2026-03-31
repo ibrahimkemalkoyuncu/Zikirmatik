@@ -32,7 +32,22 @@ A modern, habit-forming mobile application for counting Islamic dhikr (remembran
 
 ## Screenshots
 
-*(Add screenshots here when available)*
+*(Premium UI with emerald gradients, gold accents, and smooth animations)*
+
+## Design System
+
+### Color Palette
+- **Primary**: Calm Emerald Green (#2E7D32, #4CAF50)
+- **Accent**: Subtle Gold (#FFD700, #FFE082)
+- **Background**: Soft Light/Dark variants (#F8F9FA, #121212)
+- **Typography**: Clean Sans-Serif with large bold counter text
+
+### UI Components
+- **Counter Button**: Large circular gradient button with scale animation and milestone glow
+- **Progress Bar**: Smooth animated emerald gradient progress
+- **Streak Display**: Gold gradient card with fire emoji
+- **Zikr Selector**: Modal bottom sheet with premium cards
+- **Animations**: Press feedback, milestone celebrations, smooth transitions
 
 ## Architecture
 
@@ -137,5 +152,4 @@ This project is open source. Feel free to use, modify, and distribute.
 
 ---
 
-**Note**: This app is designed to help with spiritual practice. For accurate Islamic guidance, consult qualified scholars.</content>
-<parameter name="filePath">C:\Users\afney\AndroidStudioProjects\AfneyZikirmatik\README.md
+**Note**: This app is designed to help with spiritual practice. For accurate Islamic guidance, consult qualified scholars.
