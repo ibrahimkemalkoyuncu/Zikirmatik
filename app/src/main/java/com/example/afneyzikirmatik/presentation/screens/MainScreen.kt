@@ -6,9 +6,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.afneyzikirmatik.presentation.components.*
 import com.example.afneyzikirmatik.presentation.viewmodel.ZikirmatikViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun MainScreen(
@@ -21,31 +21,39 @@ fun MainScreen(
     val currentZikr by viewModel.currentZikr.collectAsState()
     val milestone by viewModel.milestone.collectAsState()
 
-    Scaffold { padding ->
+    var showZikrSelector by remember { mutableStateOf(false) }
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.background
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(16.dp),
+                .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
+            // Top spacing
+            Spacer(modifier = Modifier.height(48.dp))
+
             // Current Zikr Display
             currentZikr?.let { zikr ->
-                Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = zikr.arabic,
-                            style = MaterialTheme.typography.displayMedium
-                        )
-                        Text(
-                            text = zikr.translation,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = zikr.arabic,
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = zikr.translation,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
 
@@ -64,12 +72,16 @@ fun MainScreen(
                 onIncrement = viewModel::incrementCounter
             )
 
-            // Zikr Selector
-            ZikrSelector(
-                zikrs = zikrs,
-                currentZikrId = counterState.currentZikrId,
-                onZikrSelected = viewModel::switchZikr
-            )
+            // Change Zikr Button
+            OutlinedButton(
+                onClick = { showZikrSelector = true },
+                modifier = Modifier.padding(vertical = 16.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = MaterialTheme.colorScheme.primary
+                )
+            ) {
+                Text("Change Dhikr")
+            }
 
             Spacer(modifier = Modifier.weight(1f))
 
@@ -79,5 +91,17 @@ fun MainScreen(
             // Streak Display
             StreakDisplay(streak = streak)
         }
+    }
+
+    // Zikr Selector Modal
+    if (showZikrSelector) {
+        ZikrSelector(
+            zikrs = zikrs,
+            currentZikrId = counterState.currentZikrId,
+            onZikrSelected = { zikrId ->
+                viewModel.switchZikr(zikrId)
+                showZikrSelector = false
+            }
+        )
     }
 }

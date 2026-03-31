@@ -10,4 +10,8 @@ class IncrementCounterUseCase(private val counterRepository: CounterRepository) 
         counterRepository.saveCounterState(newState)
         return newState
     }
+
+    suspend fun saveState(state: CounterState) {
+        counterRepository.saveCounterState(state)
+    }
 }

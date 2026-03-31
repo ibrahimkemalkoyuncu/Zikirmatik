@@ -9,28 +9,55 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = EmeraldPrimary,
+    onPrimary = Color.White,
+    primaryContainer = EmeraldPrimaryVariant,
+    onPrimaryContainer = Color.White,
+    secondary = EmeraldSecondary,
+    onSecondary = Color.White,
+    secondaryContainer = GoldAccentVariant,
+    onSecondaryContainer = TextPrimaryDark,
+    tertiary = GoldAccent,
+    onTertiary = TextPrimaryDark,
+    error = ErrorColor,
+    onError = Color.White,
+    errorContainer = ErrorColor.copy(alpha = 0.1f),
+    onErrorContainer = ErrorColor,
+    background = SoftBackgroundDark,
+    onBackground = TextPrimaryDark,
+    surface = SoftSurfaceDark,
+    onSurface = TextPrimaryDark,
+    surfaceVariant = SoftSurfaceDark.copy(alpha = 0.8f),
+    onSurfaceVariant = TextSecondaryDark,
+    outline = TextSecondaryDark
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = EmeraldPrimary,
     onPrimary = Color.White,
+    primaryContainer = EmeraldPrimaryVariant,
+    onPrimaryContainer = Color.White,
+    secondary = EmeraldSecondary,
     onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    secondaryContainer = GoldAccentVariant,
+    onSecondaryContainer = TextPrimaryLight,
+    tertiary = GoldAccent,
+    onTertiary = TextPrimaryLight,
+    error = ErrorColor,
+    onError = Color.White,
+    errorContainer = ErrorColor.copy(alpha = 0.1f),
+    onErrorContainer = ErrorColor,
+    background = SoftBackgroundLight,
+    onBackground = TextPrimaryLight,
+    surface = SoftSurfaceLight,
+    onSurface = TextPrimaryLight,
+    surfaceVariant = SoftSurfaceLight.copy(alpha = 0.9f),
+    onSurfaceVariant = TextSecondaryLight,
+    outline = TextSecondaryLight
 )
 
 @Composable
